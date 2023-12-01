@@ -85,9 +85,10 @@ def main():
     df.sort_values(by="minutes", inplace=True)
 
     best_fit_curve_vals = fit_and_plot(df, "minutes", "tide_height")
-    residuals = np.abs(df["tide_height"] - best_fit_curve_vals)
+    residuals = df["tide_height"] - best_fit_curve_vals
 
     array_to_hist(residuals)
+    print(np.std(residuals))
 
 
 if __name__ == "__main__":

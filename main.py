@@ -70,7 +70,13 @@ def fit_and_plot(df, x_axis, y_axis="tide_height"):
 
 
 def array_to_hist(arr):
-    plt.hist(arr, edgecolor="black")
+    w = 0.5
+    plt.hist(arr, bins=np.arange(min(arr), max(arr) + w, w), edgecolor="black", )
+    plt.xlabel('Residuals')
+    plt.ylabel('Frequency')
+    plt.title('Histogram of Residuals')
+    plt.savefig("Part3.pdf", bbox_inches="tight", dpi=400)
+    plt.show()
 
     # plt.show()
 

@@ -66,7 +66,6 @@ def fit_and_plot(df, x_axis, y_axis="tide_height"):
     plt.ylabel("Height")
     plt.legend()
     plt.savefig("Part2.pdf", bbox_inches="tight", dpi=400)
-    plt.show()
     return np.array(fitted_curve)
 
 
@@ -78,7 +77,6 @@ def array_to_hist(arr):
     plt.ylabel("Frequency")
     plt.title("Histogram of Residuals")
     plt.savefig("Part3.pdf", bbox_inches="tight", dpi=400)
-    plt.show()
 
 
 def main():

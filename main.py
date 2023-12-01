@@ -54,23 +54,24 @@ def fit_and_plot(df, x_axis, y_axis="tide_height"):
         sigma=np.full(len(df), weights),
     )
 
-    # plotting
+    # plotting Part 2
     A, B, C, D = params
 
     fitted_curve = oscillatory_func(df[x_axis], A, B, C, D)
 
-    # plt.scatter(df[x_axis], df[y_axis], label="Original Data")
-    # plt.plot(df[x_axis], fitted_curve, "r-", label="Fitted Curve")
-    # plt.xlabel("Time (minutes)")
-    # plt.ylabel("Height")
-    # plt.legend()
-    # plt.show()
+    plt.scatter(df[x_axis], df[y_axis], label="Original Data")
+    plt.plot(df[x_axis], fitted_curve, "r-", label="Fitted Curve")
+    plt.xlabel("Time (minutes)")
+    plt.ylabel("Height")
+    plt.legend()
+    plt.savefig("Part2.pdf", bbox_inches="tight", dpi=400)
 
     return np.array(fitted_curve)
 
 
 def array_to_hist(arr):
     plt.hist(arr, edgecolor="black")
+
     # plt.show()
 
 

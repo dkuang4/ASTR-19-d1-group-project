@@ -59,27 +59,26 @@ def fit_and_plot(df, x_axis, y_axis="tide_height"):
 
     fitted_curve = oscillatory_func(df[x_axis], A, B, C, D)
 
+    plt.figure(1)
     plt.scatter(df[x_axis], df[y_axis], label="Original Data")
     plt.plot(df[x_axis], fitted_curve, "r-", label="Fitted Curve")
     plt.xlabel("Time (minutes)")
     plt.ylabel("Height")
     plt.legend()
     plt.savefig("Part2.pdf", bbox_inches="tight", dpi=400)
-
+    plt.show()
     return np.array(fitted_curve)
 
 
 def array_to_hist(arr):
+    plt.figure(2)
     w = 0.5
-    plt.hist(
-        arr,
-        bins=np.arange(min(arr), max(arr) + w, w),
-        edgecolor="black",
-    )
+    plt.hist(arr, bins=np.arange(min(arr), max(arr) + w, w),edgecolor="black",)
     plt.xlabel("Residuals")
     plt.ylabel("Frequency")
     plt.title("Histogram of Residuals")
     plt.savefig("Part3.pdf", bbox_inches="tight", dpi=400)
+    plt.show()
 
 
 def main():

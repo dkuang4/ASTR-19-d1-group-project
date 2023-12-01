@@ -75,6 +75,7 @@ def array_to_hist(arr):
     plt.xlabel('Residuals')
     plt.ylabel('Frequency')
     plt.title('Histogram of Residuals')
+    plt.savefig("Part3.pdf", bbox_inches="tight", dpi=400)
     plt.show()
 
 def main():

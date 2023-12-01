@@ -35,12 +35,23 @@ def read_and_clean_data():
 # formula from TA
 # A * sin(B * t + C) + D
 def oscillatory_func(t, A, B, C, D):
-    return A * np.sin(t + C) + B * np.sin(30 * t + D)
+    return A * np.sin(B * t + C) + D
 
 
 def fit_and_plot(df, x_axis, y_axis="tide_height"):
+    # initial guess
+    initial_guess = [-4.4, 0.005, -3.6, 2.4]
+
+    rmse = 0.25
+
+    weights = 1 / rmse
+
     params, covariance = scipy.optimize.curve_fit(
-        oscillatory_func, df[x_axis], df[y_axis], sigma=np.full(len(df), 0.25)
+        oscillatory_func,
+        df[x_axis],
+        df[y_axis],
+        p0=initial_guess,
+        sigma=np.full(len(df), weights),
     )
 
     # plotting
@@ -59,6 +70,7 @@ def fit_and_plot(df, x_axis, y_axis="tide_height"):
 def main():
     # read_and_clean_data()
     df = pd.read_csv("cleaned_data.csv")
+    df.sort_values(by="minutes", inplace=True)
     fit_and_plot(df, "minutes", "tide_height")
 
 
